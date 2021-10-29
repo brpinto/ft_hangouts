@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ft_hangouts</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Téléphone</string>
+    <string name="create_button">Ajouter</string>
+</resources>
