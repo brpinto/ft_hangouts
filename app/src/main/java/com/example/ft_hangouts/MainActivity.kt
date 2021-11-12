@@ -1,8 +1,10 @@
 package com.example.ft_hangouts
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -11,11 +13,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val addContact = findViewById<FloatingActionButton>(R.id.add_contact)
+        val contacts_list = findViewById<ListView>(R.id.contacts_list)
+        val db = DatabaseHelper(this)
 
         addContact.setOnClickListener{
             val contactIntent = Intent(this, ContactForm::class.java).apply{}
 
             startActivity(contactIntent)
         }
+
+        val users = db.readData()
+        val listItems = ArrayList<String>()
+        for (i in 0 until users.size){
+            val contact = users[i]
+            listItems.add(contact.firstName + " " + contact.lastName)
+        }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        contacts_list.adapter = adapter
     }
 }
