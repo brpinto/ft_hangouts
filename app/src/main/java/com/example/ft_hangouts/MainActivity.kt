@@ -8,20 +8,26 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val db = DatabaseHelper(this)
+        val contacts_list = findViewById<ListView>(R.id.contacts_list)
 
         val addContact = findViewById<FloatingActionButton>(R.id.add_contact)
-        val contacts_list = findViewById<ListView>(R.id.contacts_list)
-        val db = DatabaseHelper(this)
 
         addContact.setOnClickListener{
             val contactIntent = Intent(this, ContactForm::class.java).apply{}
-
             startActivity(contactIntent)
         }
 
+        displayContactsList(db, contacts_list)
+        handleContact(contacts_list)
+    }
+
+    fun displayContactsList(db: DatabaseHelper, contacts: ListView){
         val users = db.readData()
         val listItems = ArrayList<String>()
         for (i in 0 until users.size){
@@ -29,6 +35,10 @@ class MainActivity : AppCompatActivity() {
             listItems.add(contact.firstName + " " + contact.lastName)
         }
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
-        contacts_list.adapter = adapter
+        contacts.adapter = adapter
+    }
+
+    fun handleContact(list: ListView){
+        list.setOnItemClickListener(parent, )
     }
 }
