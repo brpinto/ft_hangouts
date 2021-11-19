@@ -2,6 +2,8 @@ package com.example.ft_hangouts
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         displayContactsList(db, contacts_list)
-        handleContact(contacts_list)
     }
 
     fun displayContactsList(db: DatabaseHelper, contacts: ListView){
@@ -36,9 +37,14 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         contacts.adapter = adapter
+        handleContact(contacts, users)
     }
 
-    fun handleContact(list: ListView){
-        list.setOnItemClickListener(parent, )
+    fun handleContact(list: ListView, users: ArrayList<User>){
+        list.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val userInfoIntent = Intent(this, UserInfoActivity::class.java).apply {}
+            userInfoIntent.putExtra("userId", users[position].id)
+            startActivity(userInfoIntent)
+        }
     }
 }

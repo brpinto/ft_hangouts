@@ -54,6 +54,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         if (result.moveToFirst()){
             do {
                 var user: User = User(
+                    result.getInt(0),
                     result.getString(1),
                     result.getString(2),
                     result.getString(3),
@@ -69,5 +70,26 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
 
     override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         super.onDowngrade(db, oldVersion, newVersion)
+    }
+
+    fun getUser(id: Int): User{
+        val db = this.readableDatabase
+
+        val query = "select * from " + TABLE_NAME + " WHERE " + COL_ID + " = " + id
+        val result = db.rawQuery(query, null)
+        var contacts: ArrayList<User> = ArrayList()
+        var foundUser: User = User(0, "", "", "", "")
+        if (result.moveToFirst()){
+            var user: User = User(
+                result.getInt(0),
+                result.getString(1),
+                result.getString(2),
+                result.getString(3),
+                result.getString(4)
+            )
+            foundUser = user
+        }
+        result.close()
+        return foundUser
     }
 }
