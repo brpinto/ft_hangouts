@@ -7,26 +7,19 @@ import android.widget.TextView
 
 class UserInfoActivity : AppCompatActivity() {
     val db = DatabaseHelper(this)
-    private lateinit var firstNameTextView: TextView
-    private lateinit var lastNameTextView: TextView
-    private lateinit var mailTextView: TextView
-    private lateinit var phoneTextView: TextView
+    private lateinit var userFullName: TextView
+    private lateinit var avatarContent: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
 
-        firstNameTextView = findViewById(R.id.user_first_name)
-        lastNameTextView = findViewById(R.id.user_last_name)
-        mailTextView = findViewById(R.id.user_mail)
-        phoneTextView = findViewById(R.id.user_phone)
+        userFullName = findViewById(R.id.user_full_name)
+        avatarContent = findViewById(R.id.avatar_content)
         val userId = intent.getIntExtra("userId", -1)
         val user = db.getUser(userId)
-        firstNameTextView.text = user.firstName
-        lastNameTextView.text = user.lastName
-        mailTextView.text = user.mail
-        phoneTextView.text = user.phone
-
+        userFullName.text = user.firstName + " " + user.lastName
+        avatarContent.text = user.firstName.first().uppercase()
         Log.i("User", user.toString())
     }
 }

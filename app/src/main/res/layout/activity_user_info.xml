@@ -7,46 +7,60 @@
     tools:context=".UserInfoActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="409dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/transparent"
+        tools:ignore="MissingConstraints"
+        app:cardElevation="0dp">
 
-        <TextView
-            android:id="@+id/user_first_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/user_last_name"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="54dp"
-            android:layout_marginRight="16dp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/user_mail"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginRight="16dp" />
+                <ImageView
+                    android:id="@+id/user_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/avatar" />
 
-        <TextView
-            android:id="@+id/user_phone"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="162dp"
-            android:layout_marginRight="16dp" />
+                <TextView
+                    android:id="@+id/avatar_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="42dp"
+                    android:textFontWeight="700"
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
+            </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:id="@+id/user_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:gravity="left" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
