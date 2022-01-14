@@ -4,11 +4,19 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 class ContactForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_form)
+
+        var toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        toolbar.setTitle("Créer un contact")
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.close_cross);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
 
         val create_contact = findViewById<Button>(R.id.create_contact)
         val editTextFirstName = findViewById<EditText>(R.id.first_name)
