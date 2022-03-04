@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        recreate()
         var toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false);
@@ -27,9 +27,25 @@ class MainActivity : AppCompatActivity() {
         val addContact = findViewById<FloatingActionButton>(R.id.add_contact)
 
         addContact.setOnClickListener{
-            val contactIntent = Intent(this, ContactForm::class.java).apply{}
+            val contactIntent = Intent(this, NewContactForm::class.java).apply{}
             startActivity(contactIntent)
         }
+
+        displayContactsList(db, contacts_list)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val db = DatabaseHelper(this)
+        val contacts_list = findViewById<ListView>(R.id.contacts_list)
+
+        displayContactsList(db, contacts_list)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val db = DatabaseHelper(this)
+        val contacts_list = findViewById<ListView>(R.id.contacts_list)
 
         displayContactsList(db, contacts_list)
     }

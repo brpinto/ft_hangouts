@@ -1,7 +1,8 @@
 <resources>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="email">Email</string>
-    <string name="phone_number">Phone number</string>
+    <string name="first_name">First Name*</string>
+    <string name="last_name">Last Name*</string>
+    <string name="email">Email*</string>
+    <string name="phone_number">Phone number*</string>
     <string name="create_button">Add</string>
+    <string name="update_button">Save</string>
 </resources>

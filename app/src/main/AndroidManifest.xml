@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ft_hangouts">
         <activity
+            android:name=".UpdateUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ContactForm"
+            android:name=".NewContactForm"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

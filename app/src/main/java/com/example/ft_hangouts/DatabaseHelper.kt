@@ -29,7 +29,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         onCreate(db)
     }
 
-    fun insertData(firstName: String, lastName: String, email: String, phone: String){
+    fun insertData(firstName: String, lastName: String, email: String, phone: String): Long{
         val db = this.writableDatabase
 
         val values = ContentValues().apply {
@@ -38,11 +38,25 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
             put(COL_MAIL, email)
             put(COL_PHONE, phone)
         }
-        val result = db.insert(TABLE_NAME, null, values)
+        val result: Long = db.insert(TABLE_NAME, null, values)
         if (result == (0).toLong())
             Log.i("Database", "User not created")
         else (result == (-1).toLong())
             Log.i("Database", "User created")
+        Log.i("Database", "inserData: " + result)
+        return result
+    }
+
+    fun updateData(userId: Int, firstName: String, lastName: String, email: String, phone: String): Int{
+        val db = this.writableDatabase
+
+        val values = ContentValues().apply {
+            put(COL_FIRST_NAME, firstName)
+            put(COL_LAST_NAME, lastName)
+            put(COL_MAIL, email)
+            put(COL_PHONE, phone)
+        }
+        return db.update(TABLE_NAME, values, COL_ID + " = " + userId, null)
     }
 
     fun readData(): ArrayList<User> {
@@ -91,5 +105,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         }
         result.close()
         return foundUser
+    }
+
+
+
+    fun deleteUser(userId: Int): Int {
+        val db = this.writableDatabase
+
+        return db.delete(TABLE_NAME, COL_ID + " = " + userId, null)
     }
 }
