@@ -13,11 +13,13 @@ val COL_FIRST_NAME = "first_name"
 val COL_MAIL = "mail_address"
 val COL_PHONE = "phone_number"
 val COL_ID = "id"
+val COL_AVATAR_COLOR = "avatar_color"
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
         val createTable = "CREATE TABLE ${TABLE_NAME} (" +
                 " ${COL_ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "${COL_AVATAR_COLOR} TEXT," +
                 " ${COL_FIRST_NAME} TEXT," +
                 " ${COL_LAST_NAME} TEXT," +
                 " ${COL_MAIL} TEXT," +
@@ -29,10 +31,11 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         onCreate(db)
     }
 
-    fun insertData(firstName: String, lastName: String, email: String, phone: String): Long{
+    fun insertData(avatarColor: String, firstName: String, lastName: String, email: String, phone: String): Long{
         val db = this.writableDatabase
 
         val values = ContentValues().apply {
+            put(COL_AVATAR_COLOR, avatarColor)
             put(COL_FIRST_NAME, firstName)
             put(COL_LAST_NAME, lastName)
             put(COL_MAIL, email)
@@ -72,7 +75,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
                     result.getString(1),
                     result.getString(2),
                     result.getString(3),
-                    result.getString(4)
+                    result.getString(4),
+                    result.getString(5)
                 )
                 contacts.add(user)
             }
@@ -92,14 +96,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         val query = "select * from " + TABLE_NAME + " WHERE " + COL_ID + " = " + id
         val result = db.rawQuery(query, null)
         var contacts: ArrayList<User> = ArrayList()
-        var foundUser: User = User(0, "", "", "", "")
+        var foundUser: User = User(0, "", "", "", "", "")
         if (result.moveToFirst()){
             var user: User = User(
                 result.getInt(0),
                 result.getString(1),
                 result.getString(2),
                 result.getString(3),
-                result.getString(4)
+                result.getString(4),
+                result.getString(5)
             )
             foundUser = user
         }

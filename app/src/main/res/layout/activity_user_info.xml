@@ -51,7 +51,7 @@
                     android:id="@+id/user_avatar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/avatar" />
+                    android:background="@drawable/avatar" />
 
                 <TextView
                     android:id="@+id/avatar_content"

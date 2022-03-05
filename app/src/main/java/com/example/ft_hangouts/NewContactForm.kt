@@ -1,15 +1,21 @@
 package com.example.ft_hangouts
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class NewContactForm : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_contact_form)
@@ -27,6 +33,8 @@ class NewContactForm : AppCompatActivity() {
         val editTextMail = findViewById<EditText>(R.id.email_address)
         val editTextPhone = findViewById<EditText>(R.id.phone_number)
 
+        val color: String = getRandomColor()
+
         create_contact.setOnClickListener(){
             var newUserId : Long = 0
             //val main_intent = Intent(this, MainActivity::class.java).apply{}
@@ -36,7 +44,7 @@ class NewContactForm : AppCompatActivity() {
                 && editTextPhone.text.toString().isNotEmpty()){
                 val db = DatabaseHelper(this)
 
-                newUserId = db.insertData(editTextFirstName.text.toString(), editTextLastName.text.toString(), editTextMail.text.toString(), editTextPhone.text.toString())
+                newUserId = db.insertData(color, editTextFirstName.text.toString(), editTextLastName.text.toString(), editTextMail.text.toString(), editTextPhone.text.toString())
                 Log.i("Database", "newId: " + newUserId.toString())
             }
             val userInfoIntent = Intent(this, UserInfoActivity::class.java).apply {}
@@ -58,5 +66,11 @@ class NewContactForm : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun getRandomColor(): String {
+        var rgbString: String = "" + (0..255).random() + " " + (0..255).random() + " " + (0..255).random()
+
+        return  rgbString
     }
 }

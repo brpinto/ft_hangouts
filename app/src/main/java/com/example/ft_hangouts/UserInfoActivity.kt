@@ -1,13 +1,20 @@
 package com.example.ft_hangouts
 
 import android.content.Intent
+import android.graphics.Color.rgb
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
@@ -18,7 +25,9 @@ class UserInfoActivity : AppCompatActivity() {
     private lateinit var avatarContent: TextView
     private lateinit var currentUser: User
     private lateinit var updateButton: Button
+    private lateinit var userAvatar: ImageView
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
@@ -34,9 +43,10 @@ class UserInfoActivity : AppCompatActivity() {
         userFullName = findViewById(R.id.user_full_name)
         avatarContent = findViewById(R.id.avatar_content)
         val userId = intent.getIntExtra("userId", -1)
-        Log.i("Database", "userInfo: " + userId.toString())
+
         currentUser = db.getUser(userId)
         userFullName.text = currentUser.firstName + " " + currentUser.lastName
+        setAvatarColor(userId)
         avatarContent.text = currentUser.firstName.first().uppercase()
         Log.i("Database", currentUser.toString())
 
@@ -72,5 +82,17 @@ class UserInfoActivity : AppCompatActivity() {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.user_info_menu, menu)
         return true
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setAvatarColor(userId: Int){
+        val userAvatar: ImageView = findViewById(R.id.user_avatar)
+        var avatarBackground: Drawable = userAvatar.background
+
+        val currentUser = db.getUser(userId)
+        val rgbArray = currentUser.color.split(" ")
+
+        var avatarBg = (avatarBackground as GradientDrawable).mutate()
+        (avatarBg as GradientDrawable).setColor(rgb(rgbArray[0].toInt(), rgbArray[1].toInt(), rgbArray[2].toInt()))
     }
 }
