@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ft_hangouts">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,18 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ft_hangouts">
-        <activity
-            android:name=".SendMessageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UpdateUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NewContactForm"
-            android:exported="false" />
+
+        <activity android:name=".SendMessageActivity" />
+        <activity android:name=".UpdateUserActivity"/>
+        <activity android:name=".UserInfoActivity" />
+        <activity android:name=".NewContactForm" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
