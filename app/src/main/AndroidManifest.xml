@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ft_hangouts">
         <activity
+            android:name=".SendMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdateUserActivity"
             android:exported="false" />
         <activity

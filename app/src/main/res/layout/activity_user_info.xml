@@ -146,7 +146,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardView3"
+            android:id="@+id/sms_button"
             android:layout_width="100dp"
             android:layout_height="62dp"
             android:layout_gravity="center_vertical"

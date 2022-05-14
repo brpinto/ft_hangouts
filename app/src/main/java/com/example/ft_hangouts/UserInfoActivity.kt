@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color.rgb
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 
 
 class UserInfoActivity : AppCompatActivity() {
@@ -25,7 +25,7 @@ class UserInfoActivity : AppCompatActivity() {
     private lateinit var avatarContent: TextView
     private lateinit var currentUser: User
     private lateinit var updateButton: Button
-    private lateinit var userAvatar: ImageView
+    private lateinit var smsButton: ConstraintLayout
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +34,7 @@ class UserInfoActivity : AppCompatActivity() {
 
         var toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         updateButton = findViewById(R.id.update_contact)
+        smsButton = findViewById(R.id.sms_button)
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false);
@@ -56,6 +57,13 @@ class UserInfoActivity : AppCompatActivity() {
             //updateIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             finish()
             startActivity(updateIntent)
+        }
+
+        smsButton.setOnClickListener{
+            val smsIntent = Intent(this, SendMessageActivity::class.java).apply {}
+            smsIntent.putExtra("userId", currentUser.id)
+            finish()
+            startActivity(smsIntent)
         }
     }
 
