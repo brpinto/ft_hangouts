@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,6 +27,7 @@ class UserInfoActivity : AppCompatActivity() {
     private lateinit var currentUser: User
     private lateinit var updateButton: Button
     private lateinit var userAvatar: ImageView
+    private lateinit var smsButton: View
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class UserInfoActivity : AppCompatActivity() {
 
         var toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         updateButton = findViewById(R.id.update_contact)
+        smsButton = findViewById(R.id.sms_card)
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false);
@@ -56,6 +59,13 @@ class UserInfoActivity : AppCompatActivity() {
             //updateIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             finish()
             startActivity(updateIntent)
+        }
+
+        smsButton.setOnClickListener{
+            val smsIntent = Intent(this, SmsActivity::class.java).apply {}
+            smsIntent.putExtra("userId", currentUser.id)
+            finish()
+            startActivity(smsIntent)
         }
     }
 

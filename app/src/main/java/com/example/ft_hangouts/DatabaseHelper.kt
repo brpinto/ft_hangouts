@@ -17,14 +17,20 @@ val COL_AVATAR_COLOR = "avatar_color"
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
-        val createTable = "CREATE TABLE ${TABLE_NAME} (" +
+        val contactsTable = "CREATE TABLE ${TABLE_NAME} (" +
                 " ${COL_ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "${COL_AVATAR_COLOR} TEXT," +
                 " ${COL_FIRST_NAME} TEXT," +
                 " ${COL_LAST_NAME} TEXT," +
                 " ${COL_MAIL} TEXT," +
                 " ${COL_PHONE} TEXT)"
-        db.execSQL(createTable)
+        val smsTable = "CREATE TABLE Sms (" +
+                "smsId INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "phoneNumber TEXT," +
+                "message TEXT," +
+                "sender TEXT)"
+        db.execSQL(contactsTable)
+        db.execSQL(smsTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

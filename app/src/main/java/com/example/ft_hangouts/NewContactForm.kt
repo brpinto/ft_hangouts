@@ -13,6 +13,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.textfield.TextInputLayout
 
 class NewContactForm : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
@@ -28,23 +29,23 @@ class NewContactForm : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true);
 
         val create_contact = findViewById<Button>(R.id.create_contact)
-        val editTextFirstName = findViewById<EditText>(R.id.first_name)
-        val editTextLastName = findViewById<EditText>(R.id.last_name)
-        val editTextMail = findViewById<EditText>(R.id.email_address)
-        val editTextPhone = findViewById<EditText>(R.id.phone_number)
+        val editTextFirstName = findViewById<TextInputLayout>(R.id.first_name)
+        val editTextLastName = findViewById<TextInputLayout>(R.id.last_name)
+        val editTextMail = findViewById<TextInputLayout>(R.id.email_address)
+        val editTextPhone = findViewById<TextInputLayout>(R.id.phone_number)
 
         val color: String = getRandomColor()
 
         create_contact.setOnClickListener(){
             var newUserId : Long = 0
             //val main_intent = Intent(this, MainActivity::class.java).apply{}
-            if (editTextFirstName.text.toString().isNotEmpty()
-                && editTextLastName.text.toString().isNotEmpty()
-                && editTextMail.text.toString().isNotEmpty()
-                && editTextPhone.text.toString().isNotEmpty()){
+            if (editTextFirstName.editText?.text.toString().isNotEmpty()
+                && editTextLastName.editText?.text.toString().isNotEmpty()
+                && editTextMail.editText?.text.toString().isNotEmpty()
+                && editTextPhone.editText?.text.toString().isNotEmpty()){
                 val db = DatabaseHelper(this)
 
-                newUserId = db.insertData(color, editTextFirstName.text.toString(), editTextLastName.text.toString(), editTextMail.text.toString(), editTextPhone.text.toString())
+                newUserId = db.insertData(color, editTextFirstName.editText?.text.toString(), editTextLastName.editText?.text.toString(), editTextMail.editText?.text.toString(), editTextPhone.editText?.text.toString())
                 Log.i("Database", "newId: " + newUserId.toString())
             }
             val userInfoIntent = Intent(this, UserInfoActivity::class.java).apply {}

@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ft_hangouts">
         <activity
+            android:name=".SmsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".UpdateUserActivity"
             android:exported="false" />
         <activity
