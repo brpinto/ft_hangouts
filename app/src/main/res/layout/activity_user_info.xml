@@ -146,7 +146,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+<<<<<<< HEAD
             android:id="@+id/sms_card"
+=======
+            android:id="@+id/sms_button"
+>>>>>>> f590a93bd7d6f158fffb407597a7e88711fc75d5
             android:layout_width="100dp"
             android:layout_height="62dp"
             android:layout_gravity="center_vertical"

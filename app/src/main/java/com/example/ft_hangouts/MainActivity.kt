@@ -1,6 +1,7 @@
 package com.example.ft_hangouts
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.AdapterView
@@ -67,5 +68,10 @@ class MainActivity : AppCompatActivity() {
             userInfoIntent.putExtra("userId", users[position].id)
             startActivity(userInfoIntent)
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        setContentView(R.layout.activity_main)
     }
 }

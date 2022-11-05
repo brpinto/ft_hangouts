@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color.rgb
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +17,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 
 
 class UserInfoActivity : AppCompatActivity() {
@@ -26,8 +26,12 @@ class UserInfoActivity : AppCompatActivity() {
     private lateinit var avatarContent: TextView
     private lateinit var currentUser: User
     private lateinit var updateButton: Button
+<<<<<<< HEAD
     private lateinit var userAvatar: ImageView
     private lateinit var smsButton: View
+=======
+    private lateinit var smsButton: ConstraintLayout
+>>>>>>> f590a93bd7d6f158fffb407597a7e88711fc75d5
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +40,11 @@ class UserInfoActivity : AppCompatActivity() {
 
         var toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         updateButton = findViewById(R.id.update_contact)
+<<<<<<< HEAD
         smsButton = findViewById(R.id.sms_card)
+=======
+        smsButton = findViewById(R.id.sms_button)
+>>>>>>> f590a93bd7d6f158fffb407597a7e88711fc75d5
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false);
@@ -62,7 +70,11 @@ class UserInfoActivity : AppCompatActivity() {
         }
 
         smsButton.setOnClickListener{
+<<<<<<< HEAD
             val smsIntent = Intent(this, SmsActivity::class.java).apply {}
+=======
+            val smsIntent = Intent(this, SendMessageActivity::class.java).apply {}
+>>>>>>> f590a93bd7d6f158fffb407597a7e88711fc75d5
             smsIntent.putExtra("userId", currentUser.id)
             finish()
             startActivity(smsIntent)
