@@ -18,20 +18,13 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.textfield.TextInputLayout
 
 class UpdateUserActivity : AppCompatActivity() {
-<<<<<<< HEAD
     private lateinit var editTextUpdateFirstName: TextInputLayout
     private lateinit var editTextUpdateLastName: TextInputLayout
     private lateinit var editTextUpdateMail: TextInputLayout
     private lateinit var editTextUpdatePhone: TextInputLayout
-=======
-    val db = DatabaseHelper(this)
-
-    private lateinit var editTextUpdateFirstName: EditText
-    private lateinit var editTextUpdateLastName: EditText
-    private lateinit var editTextUpdateMail: EditText
-    private lateinit var editTextUpdatePhone: EditText
     private lateinit var avatarContent: TextView
->>>>>>> f590a93bd7d6f158fffb407597a7e88711fc75d5
+
+    val db = DatabaseHelper(this)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,21 +48,13 @@ class UpdateUserActivity : AppCompatActivity() {
         editTextUpdateMail = findViewById(R.id.updating_email_address)
         editTextUpdatePhone = findViewById(R.id.updating_phone_number)
 
-<<<<<<< HEAD
-        var currentUser = db.getUser(intent.getIntExtra("userId", -1))
         editTextUpdateFirstName.editText?.setText(currentUser.firstName)
         editTextUpdateLastName.editText?.setText(currentUser.lastName)
         editTextUpdateMail.editText?.setText(currentUser.mail)
         editTextUpdatePhone.editText?.setText(currentUser.phone)
-=======
-        editTextUpdateFirstName.setText(currentUser.firstName)
-        editTextUpdateLastName.setText(currentUser.lastName)
-        editTextUpdateMail.setText(currentUser.mail)
-        editTextUpdatePhone.setText(currentUser.phone)
->>>>>>> f590a93bd7d6f158fffb407597a7e88711fc75d5
 
         updateButton.setOnClickListener(){
-            val result = db.updateData(currentUser.id, editTextUpdateFirstName.editText?.text.toString(), editTextUpdateLastName.editText?.text.toString(), editTextUpdateMail.editText?.text.toString(), editTextUpdatePhone.editText?.text.toString())
+            val result = db.updateContact(currentUser.id, editTextUpdateFirstName.editText?.text.toString(), editTextUpdateLastName.editText?.text.toString(), editTextUpdateMail.editText?.text.toString(), editTextUpdatePhone.editText?.text.toString())
             val userInfoIntent = Intent(this, UserInfoActivity::class.java).apply {}
             userInfoIntent.putExtra("userId", currentUser.id)
             finish()

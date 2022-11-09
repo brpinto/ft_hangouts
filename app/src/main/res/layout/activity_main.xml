@@ -6,7 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/toolbar" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/design_default_color_primary_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,17 +26,19 @@
             android:id="@+id/contacts_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp" />
+            android:layout_marginTop="15dp" />
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_contact"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-        android:src="@android:drawable/ic_input_add"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:backgroundTint="@color/design_default_color_primary"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/white"/>
 </RelativeLayout>

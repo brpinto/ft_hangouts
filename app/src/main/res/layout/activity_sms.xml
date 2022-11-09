@@ -22,17 +22,18 @@
         android:layout_below="@+id/my_toolbar"
         android:layout_marginTop="0dp">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_above="@id/sms_input" >
+            <ListView
+                android:id="@+id/sms_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </RelativeLayout>
-        </ScrollView>
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/sms_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -57,6 +58,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
+                android:id="@+id/send_button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
